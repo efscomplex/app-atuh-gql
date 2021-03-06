@@ -1,7 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-
 import 'style.css'
+import App from './App'
 
-const App = () => <h1>'hello world!'</h1>
 render(<App />, document.getElementById('app'))
