@@ -14,9 +14,11 @@ type Render = (props: RouteComponentProps<any>) => React.ReactNode
 const PrivateRoute: React.FC<RouteProps> = ({ children, ...rest }) => {
 	const { state } = useGlobalState()
 	const { user } = useUser()
-	const route = user.logged ? children : <Redirect to='/' />
+
+	const privateRoute = state.isLoading ? <Spinner /> : children
+
 	const render: Render = ({ location }) => {
-		return state.isLoading ? <Spinner /> : route
+		return user.isLogged ? privateRoute : <Redirect to='/login' />
 	}
 	return <Route {...rest} render={render} />
 }

@@ -6,23 +6,24 @@ import React, {
 	useState
 } from 'react'
 
-interface User {
-	logged: boolean
+export interface User {
+	isLogged: boolean
 	[key: string]: any
 }
 interface UserContext {
 	user: User
-	setUser?: Dispatch<SetStateAction<{ logged: boolean }>>
+	setUser: Dispatch<SetStateAction<User>>
 }
 
 const initialState: UserContext = {
-	user: { logged: false }
+	user: { isLogged: false },
+	setUser: () => {}
 }
 export const UserContext = createContext<UserContext>(initialState)
 export const useUser = () => useContext(UserContext)
 
 export const UserProvider: React.FC = ({ children }) => {
-	const [user, setUser] = useState({ logged: false })
+	const [user, setUser] = useState({ isLogged: false })
 	return (
 		<UserContext.Provider value={{ user, setUser }}>
 			{children}

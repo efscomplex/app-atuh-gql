@@ -12,10 +12,11 @@ interface State {
 }
 interface GlobalContext {
 	state: State
-	setState?: Dispatch<SetStateAction<{ isLoading: boolean }>>
+	setState: Dispatch<SetStateAction<{ isLoading: boolean }>>
 }
 const initialState = {
-	state: { isLoading: true }
+	state: { isLoading: true },
+	setState: () => {}
 }
 export const GlobalStateContext = createContext<GlobalContext>(initialState)
 export const useGlobalState = () => useContext(GlobalStateContext)

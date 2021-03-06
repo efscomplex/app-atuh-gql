@@ -11,3 +11,6 @@ html {
 #app {
 	height: 100vh;
 }
+button {
+	cursor: pointer;
+}

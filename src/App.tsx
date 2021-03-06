@@ -3,6 +3,7 @@ import PrivateRoute from 'components/PrivateRoute'
 import Dashboard from 'pages/Dashboard'
 import Landing from 'pages/Landing'
 import Login from 'pages/Login'
+import { AuthProvider } from 'providers/Auth'
 import { GlobalState } from 'providers/GlobalState'
 import { UserProvider } from 'providers/User'
 import React from 'react'
@@ -24,7 +25,7 @@ const App = () => {
 						<Dashboard />
 					</PrivateRoute>
 					<Route>
-						<Redirect to='/login' />
+						<Redirect to='/' />
 					</Route>
 				</Switch>
 			</Layout>
@@ -35,7 +36,9 @@ const App = () => {
 export default () => (
 	<GlobalState>
 		<UserProvider>
-			<App />
+			<AuthProvider>
+				<App />
+			</AuthProvider>
 		</UserProvider>
 	</GlobalState>
 )
