@@ -1,3 +1,4 @@
+import { GrphqlQueryProvider } from 'components/GraphqlQuery'
 import Layout from 'components/layout/Layout'
 import PrivateRoute from 'components/PrivateRoute'
 import Dashboard from 'pages/Dashboard'
@@ -6,6 +7,7 @@ import Login from 'pages/Login'
 import { AuthProvider } from 'providers/Auth'
 import { GlobalState } from 'providers/GlobalState'
 import { UserProvider } from 'providers/User'
+import * as queries from 'queries'
 import React from 'react'
 import {
 	BrowserRouter as Router,
@@ -37,7 +39,9 @@ export default () => (
 	<GlobalState>
 		<UserProvider>
 			<AuthProvider>
-				<App />
+				<GrphqlQueryProvider queries={queries}>
+					<App />
+				</GrphqlQueryProvider>
 			</AuthProvider>
 		</UserProvider>
 	</GlobalState>

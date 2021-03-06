@@ -3,18 +3,21 @@ import Input from 'components/shared/Input'
 import { useAuth } from 'providers/Auth'
 import { useUser } from 'providers/User'
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 
 export default function Login() {
 	const { setUser } = useUser()
 	const { loggin } = useAuth()
 	const [email, setEmail] = useState()
 	const [password, setPassword] = useState()
+	const history = useHistory()
 
 	const onClickLogin = (e: any) => {
 		e.preventDefault()
 		if (!email || !password) return
 		const callback = (data: any) => {
 			setUser({ ...data, isLogged: true })
+			history.push('/dashboard')
 		}
 		loggin({ email, password }, callback)
 	}
